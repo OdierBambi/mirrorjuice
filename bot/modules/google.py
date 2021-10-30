@@ -1,5 +1,7 @@
 from search_engine_parser import GoogleSearch
-from bot import app, dispatcher, Message
+from pyrogram import filters
+from pyrogram.types import Message
+from bot import app, dispatcher
 from telegram.ext import CommandHandler
 
 
