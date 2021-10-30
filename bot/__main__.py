@@ -197,7 +197,7 @@ help_string = f'''
 
 /{BotCommands.TsHelpCommand}: Bantuan untuk pencarian Torrent
 
-/extrahelp  : Dapatkan menu extra.
+/extramenu  : Dapatkan menu extra.
 /weebhelp   : Bantuan untuk anime, manga & character.
 /funyhelp   : Dapatkan menu kesenangan.
 
