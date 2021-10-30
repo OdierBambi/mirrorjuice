@@ -21,6 +21,6 @@ def extrahelp(update, context):
     update.effective_message.reply_photo("https://telegra.ph/file/6b6d2675626aa90f67bce.jpg", help_string, parse_mode=ParseMode.MARKDOWN)
 
 
-EXTRAHELP_HANDLER = CommandHandler("extrahelp", extrahelp)
+EXTRAMENU_HANDLER = CommandHandler("extramenu", extrahelp)
 
-dispatcher.add_handler(EXTRAHELP_HANDLER)
+dispatcher.add_handler(EXTRAMENU_HANDLER)
