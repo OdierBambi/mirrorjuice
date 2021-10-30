@@ -179,8 +179,8 @@ if DB_URI is not None:
             LOGGER.error(e)
             exit(1)
     finally:
-           cur.close()
-           conn.close()
+        cur.close()
+        conn.close()
 
 LOGGER.info("Generating USER_SESSION_STRING")
 app = Client('Slam', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN)
