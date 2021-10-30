@@ -7,7 +7,7 @@ from bot import app, dispatcher
 from telegram.ext import CommandHandler
 
 @app.on_message(filters.command(['apk']))
-async def apk(client,message):
+async def apk(client, message):
     try:
         await message.edit("`Searching...`")
         app_name = '+'.join(message.input_str.split(' '))
