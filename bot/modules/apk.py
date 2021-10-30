@@ -9,7 +9,7 @@ from telegram.ext import CommandHandler
 @app.on_message(filters.command(['apk']))
 async def apk(client, message):
     try:
-        await message.edit("`Searching...`")
+        await message.reply("`Searching...`")
         app_name = '+'.join(message.input_str.split(' '))
         page = requests.get(f"https://play.google.com/store/search?q={app_name}&c=apps")
         soup = bs4.BeautifulSoup(page.content, 'lxml', from_encoding='utf-8')
@@ -32,9 +32,9 @@ async def apk(client, message):
         app_details += f"`Developer :` [{app_dev}]({app_dev_link})\n"
         app_details += f"`Rating :` {app_rating}\n"
         app_details += f"`Features :` [View in Play Store]({app_link})"
-        await message.edit(app_details, disable_web_page_preview=False)
+        await message.reply(app_details, disable_web_page_preview=False)
     except IndexError:
-        await message.edit("No result found in search. Please enter **Valid app name**")
+        await message.reply("No result found in search. Please enter **Valid app name**")
 
 APK_HANDLER = CommandHandler("apk", apk)
 
