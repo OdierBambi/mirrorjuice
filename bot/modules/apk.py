@@ -10,7 +10,7 @@ from telegram.ext import CommandHandler
 async def apk(client, message):
     try:
         await message.reply("`Searching...`")
-        app_name = '+'.join(message.input_str.split(' '))
+        app_name = '+'.join(message.split(' '))
         page = requests.get(f"https://play.google.com/store/search?q={app_name}&c=apps")
         soup = bs4.BeautifulSoup(page.content, 'lxml', from_encoding='utf-8')
         results = soup.findAll("div", "ZmHEEd")
