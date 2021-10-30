@@ -3,7 +3,7 @@ import aiohttp
 import requests
 
 from pyrogram import filters
-from pyrogram.types.Message
+from pyrogram.types import Message
 from bot import app, dispatcher
 from telegram.ext import CommandHandler
 
