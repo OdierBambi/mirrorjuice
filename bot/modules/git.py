@@ -34,7 +34,6 @@ def github(bot: Bot, update: Update):
 
 
 
-@run_async
 def repo(bot: Bot, update: Update, args: [str]):
     message = update.effective_message
     text = message.text[len('/repo '):]
