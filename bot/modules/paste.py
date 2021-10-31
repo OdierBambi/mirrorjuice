@@ -20,7 +20,7 @@ async def hastebin(c: Client, m: Message):
         http = httpx.AsyncClient(http2=True)
         url = "https://nekobin.com/api/documents"
         r = await http.post(url, data=mean.encode("UTF-8"))
-        url = f"[Here Your paste](https://nekobin.com/{r.json()['key']})"
+        url = f"https://nekobin.com/{r.json()['key']}"
         await m.reply_text(url, disable_web_page_preview=True)
     else:
         await m.reply_text("reply_to_document_or_text")
