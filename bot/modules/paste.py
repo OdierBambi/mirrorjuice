@@ -18,7 +18,7 @@ async def hastebin(c: Client, m: Message):
             mean = m.reply_to_message.text
 
         http = httpx.AsyncClient(http2=True)
-        url = "https://hastebin.com/developer/documents"
+        url = "https://hastebin.com/documents"
         r = await http.post(url, data=mean.encode("UTF-8"))
         url = f"https://hastebin.com/{r.json()['key']}"
         await m.reply_text(url, disable_web_page_preview=True)
