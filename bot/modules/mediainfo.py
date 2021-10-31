@@ -4,7 +4,7 @@
 
 import os
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from bot import app
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper import post_to_telegraph, runcmd, safe_filename
@@ -53,4 +53,4 @@ async def mediainfo(client, message):
     text_ = media_type.split(".")[-1].upper()
     link = post_to_telegraph(title, body_text)
     markup = InlineKeyboardMarkup([[InlineKeyboardButton(text=text_, url=link)]])
-    await process.edit_text("ℹ️ <b>MEDIA INFO</b>", reply_markup=markup)
+    await process.edit_text("<b>Here's Mediainfo by @AsubuntungBot\n For {message.from_user.username}</b>", reply_markup=markup)
