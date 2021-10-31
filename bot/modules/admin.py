@@ -36,7 +36,7 @@ def admeme_callback(_,query):
     else:
         message.reply('You are not admin!')
 
-@app.on_message(filters.command('[ban']))
+@app.on_message(filters.command(['ban']))
 def ban(_,message):
     # scammer = reply.from_user.id
     reply = message.reply_to_message
