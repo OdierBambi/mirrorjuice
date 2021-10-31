@@ -10,6 +10,7 @@ import string
 import time
 import shutil
 
+from pyrogram.types import Message, User
 from telegram.ext import CommandHandler
 from telegram import InlineKeyboardMarkup
 from fnmatch import fnmatch
@@ -220,7 +221,7 @@ class MirrorListener(listeners.MirrorListeners):
                 chat_id = str(self.message.chat.id)[4:]
                 msg = f"<b>🔰 Name  :</b> <a href='https://t.me/c/{chat_id}/{self.uid}'>{link}</a>\n"
                 msg += f'<b>🔍  Total Files :</b> {count}\n'
-                msg += f'\n\n<b>👤 Request By :</b> ☞ {uname} \n<b>🔰  Silakan Didownload ✅ </b>\n'
+                msg += f'\n\n<b>👤 Request By :</b> ☞ {message.from_user.mention} \n<b>🔰  Silakan Didownload ✅ </b>\n'
                 fmsg = ''
                 for index, item in enumerate(list(files), start=1):
                     msg_id = files[item]
