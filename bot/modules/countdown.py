@@ -11,7 +11,7 @@ from telegram.ext import CommandHandler
 stoptimer = False
 
 
-@app.on_message(filters.command('set'))
+@app.on_message(filters.command(['set']))
 async def set_timer(client, message):
     global stoptimer
     try:
@@ -79,7 +79,7 @@ async def set_timer(client, message):
     except FloodWait as e:
         await asyncio.sleep(e.x)
 
-@app.on_message(filters.command('stopc'))
+@app.on_message(filters.command(['stopc']))
 async def stop_timer(Client, message):
     global stoptimer
     try:
