@@ -5,7 +5,7 @@ from bot import dispatcher
 
 
 
-def lyrics(bot: Bot, update: Update, args):
+def lyrics(bot: Bot, update: Update):
     msg = update.effective_message
     query = " ".join(args)
     song = ""
@@ -31,6 +31,6 @@ def lyrics(bot: Bot, update: Update, args):
             msg.reply_text(reply)
 
 
-LYRICS_HANDLER = CommandHandler("lyrics", lyrics, pass_args=True)
+LYRICS_HANDLER = CommandHandler("lyrics", lyrics)
 
 dispatcher.add_handler(LYRICS_HANDLER)
