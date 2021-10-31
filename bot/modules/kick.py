@@ -12,7 +12,7 @@ from telegram.ext import CommandHandler
 async def urlencode(c: Client, m: Message):
     await m.reply_text(quote(m.text.split(None, 1)[1]))
     
-@app.on_message(filters.command("urldecode", prefix))
+@app.on_message(filters.command(['urldecode']))
 async def urldecode(c: Client, m: Message):
     await m.reply_text(unquote(m.text.split(None, 1)[1]))
 
