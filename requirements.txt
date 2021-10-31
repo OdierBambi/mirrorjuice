@@ -24,6 +24,7 @@ nekos.py
 pillow
 psutil
 psycopg2-binary
+pymongo
 pybase64
 pyrogram
 pyshorteners
