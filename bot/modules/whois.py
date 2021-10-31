@@ -6,7 +6,7 @@ from bot import app, dispatcher
 from telegram.ext import CommandHandler
 
 
-@app.on_message(filters.command(['whois'])
+@app.on_message(filters.command(['whois']))
 async def whois(client, message):
     await message.reply(
         f"""        
