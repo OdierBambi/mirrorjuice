@@ -16,6 +16,7 @@ gunicorn
 hachoir
 heroku3
 httpx[http2]
+imdbpy
 js2py
 jikanpy
 lk21
