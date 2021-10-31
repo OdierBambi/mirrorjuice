@@ -19,7 +19,7 @@ from bot.helper.telegram_helper.message_utils import *
 from .helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
 from .helper.telegram_helper.filters import CustomFilters
 from bot.helper.telegram_helper import button_build
-from .modules import authorize, animequotes, cancel_mirror, cat, clone, count, countdown, delete, fun, eval, extrahelp, google, list, leech_settings, jav, jav_strings, report, mediainfo, mirror, mirror_status, misc, nsfw, nsfwhelp, nhentai, paste, shell, speedtest, stickers, sitesearch, songs, telegraph, text, tts, trt, torrent_search, usage, watch, wife, weebify, whois
+from .modules import authorize, animequotes, cancel_mirror, cat, clone, count, countdown, delete, fun, eval, extrahelp, google, list, leech_settings, jav, jav_strings, report, mediainfo, mirror, mirror_status, misc, nsfw, nsfwhelp, nhentai, paste, shell, speedtest, stickers, sitesearch, songs, telegraph, text, tts, trt, torrent_search, usage, watch, wife, welcome, weebify, whois
 
 format = "%d %b %Y at %I:%M %p"
 
