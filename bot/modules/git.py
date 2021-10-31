@@ -34,7 +34,7 @@ def github(bot: Bot, update: Update):
 
 
 
-def repo(bot: Bot, update: Update, args: [str]):
+def repo(bot: Bot, update: Update):
     message = update.effective_message
     text = message.text[len('/repo '):]
     usr = get(f'https://api.github.com/users/{text}/repos?per_page=40').json()
@@ -46,7 +46,7 @@ def repo(bot: Bot, update: Update, args: [str]):
 
 
 GIT_HANDLER = CommandHandler("git", github)
-REPO_HANDLER = CommandHandler("repo", repo, pass_args=True)
+REPO_HANDLER = CommandHandler("repo", repo)
 
 dispatcher.add_handler(GIT_HANDLER)
 dispatcher.add_handler(REPO_HANDLER)
