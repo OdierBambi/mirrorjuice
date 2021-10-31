@@ -24,7 +24,7 @@ async def set_timer(client, message):
         else:
             user_input_time = int(message.command[1])
             user_input_event = str(message.command[2])
-            get_user_input_time = await bot.send_message(message.chat.id, user_input_time)
+            get_user_input_time = await app.send_message(message.chat.id, user_input_time)
             await get_user_input_time.pin()
             if stoptimer: stoptimer = False
             if 0<user_input_time<=10:
@@ -83,7 +83,7 @@ async def set_timer(client, message):
 async def stop_timer(Client, message):
     global stoptimer
     try:
-        if (await bot.get_chat_member(message.chat.id,message.from_user.id)).can_manage_chat:
+        if (await app.get_chat_member(message.chat.id,message.from_user.id)).can_manage_chat:
             stoptimer = True
             await message.reply('🛑 Countdown stopped.')
         else:
