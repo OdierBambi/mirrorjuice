@@ -1,87 +1,26 @@
-import os
-import time
-from datetime import datetime
 from pyrogram import Client, filters
-from pyrogram.errors import UserNotParticipant
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+import os
+
 from bot import app, dispatcher
 from telegram.ext import CommandHandler
-from bot.helper.extract_user import extract_user
-from bot.helper.last_online_hlpr import last_online
 
 
-@app.on_message(filters.command(['whois']))
-async def who_is(client, message):
-    """ extract user information """
-    status_message = await message.reply_text(
-        "🔍 Info sedang di salin , mohon tunggu"
-    )
-    from_user = None
-    from_user_id, _ = extract_user(message)
-    try:
-        from_user = await client.get_users(from_user_id)
-    except Exception as error:
-        await status_message.edit(str(error))
-        return
-    if from_user is None:
-        await status_message.edit("no valid user_id / message specified")
-        return
-    
-    first_name = from_user.first_name or ""
-    last_name = from_user.last_name or ""
-    username = from_user.username or ""
-    
-    message_out_str = (
-        "<b>👤 Name :</b> "
-        f"<a href='tg://user?id={from_user.id}'>{first_name}</a>\n"
-        f"<b>Suffix:</b> {last_name}\n"
-        f"<b>✅ Username :</b> @{username}\n"
-        f"<b>🌐 User ID :</b> <code>{from_user.id}</code>\n"
-        f"<b>🍊Phone number</b>: {message.reply_to_message.forward_from.phone_number}\n"
-        f"<b>🤔Language</b>: {message.reply_to_message.forward_from.language_code}\n"
-        f"<b>😅Status</b>: {message.reply_to_message.forward_from.status}\n"
-        f"<b>🔐Data center id</b>: {message.reply_to_message.forward_from.dc_id}\n"
-        f"<b>📍 User Link :</b> {from_user.mention}\n" if from_user.username else ""
-        f"<b>Is Deleted:</b> True\n" if from_user.is_deleted else ""
-        f"<b>Is Verified:</b> True" if from_user.is_verified else ""
-        f"<b>Is Scam:</b> True" if from_user.is_scam else ""
-        # f"<b>Is Fake:</b> True" if from_user.is_fake else ""
-        f"<b>Last Seen:</b> <code>{last_online(from_user)}</code>\n\n"
-    )
+@app.on_message(filters.command(['whois'])
+async def whois(client, message):
+    await message.reply(
+        f"""        
+<b>First name</b>: {message.from_user.first_name}
+<b>Last name</b>: {message.from_user.last_name}
+<b>Username</b>: {message.from_user.username}
+<b>User id</b>: <code>{message.from_user.id}</code>
+<b>Phone number</b>: {message.from_user.phone_number}
+<b>Language</b>: {message.from_user.language_code}
+<b>Status</b>: {message.from_user.status}
+<b>Bio</b>: <code>{message.from_chat.bio}</code>
+<b>Data center id</b>: {message.from_user.dc_id}"""
+)
 
-    if message.chat.type in ["supergroup", "channel"]:
-        try:
-            chat_member_p = await message.chat.get_member(from_user.id)
-            joined_date = datetime.fromtimestamp(
-                chat_member_p.joined_date or time.time()
-            ).strftime("%Y.%m.%d %H:%M:%S")
-            message_out_str += (
-                "<b>🛡 Joined on :</b> <code>"
-                f"{joined_date}"
-                "</code>\n"
-            )
-        except UserNotParticipant:
-            pass
-    chat_photo = from_user.photo
-    if chat_photo:
-        local_user_photo = await client.download_media(
-            message=chat_photo.big_file_id
-        )
-        await message.reply_photo(
-            photo=local_user_photo,
-            quote=True,
-            caption=message_out_str,
-            disable_notification=True
-        )
-        os.remove(local_user_photo)
-    else:
-        await message.reply_text(
-            text=message_out_str,
-            quote=True,
-            disable_notification=True
-        )
-    await status_message.delete()
-
-
-WHOIS_HANDLER = CommandHandler("whois", who_is)
+WHOIS_HANDLER = CommandHandler("whois", whois)
 
 dispatcher.add_handler(WHOIS_HANDLER)
