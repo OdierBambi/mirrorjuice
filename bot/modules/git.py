@@ -6,7 +6,7 @@ from requests import get
 
 
 
-def github(bot: Bot, update: Update):
+def github(bot: Bot, update: Update, context: CallbackContext):
     message = update.effective_message
     text = message.text[len('/git '):]
     usr = get(f'https://api.github.com/users/{text}').json()
