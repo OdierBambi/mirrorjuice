@@ -37,7 +37,7 @@ async def who_is(client, message):
         f"<b>✅ Username :</b> @{username}\n"
         f"<b>🌐 User ID :</b> <code>{from_user.id}</code>\n"
         f"<b>🍊Phone number</b>: {message.reply_to_message.forward_from.phone_number}\n"
-        f"<b>🤔Language</b>: {message.reply_to_message.forward_from.language_code\n"
+        f"<b>🤔Language</b>: {message.reply_to_message.forward_from.language_code}\n"
         f"<b>😅Status</b>: {message.reply_to_message.forward_from.status}\n"
         f"<b>🔐Data center id</b>: {message.reply_to_message.forward_from.dc_id}\n"
         f"<b>📍 User Link :</b> {from_user.mention}\n" if from_user.username else ""
