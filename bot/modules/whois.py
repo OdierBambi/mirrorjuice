@@ -17,7 +17,6 @@ async def whois(client, message):
 <b>Phone number</b>: {message.from_user.phone_number}
 <b>Language</b>: {message.from_user.language_code}
 <b>Status</b>: {message.from_user.status}
-<b>Bio</b>: <code>{message.from_user.bio}</code>
 <b>Data center id</b>: {message.from_user.dc_id}"""
 )
 
