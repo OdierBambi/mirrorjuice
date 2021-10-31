@@ -1,18 +1,7 @@
-  
-
 from telegram import ParseMode, Update, Bot
-
 from telegram.ext import CommandHandler, run_async
-
-
-
 from bot import dispatcher
-
-
-
 from requests import get
-
-
 
 
 
