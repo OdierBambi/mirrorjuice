@@ -1,11 +1,11 @@
 from tswift import Song
 from telegram import Bot, Update, Message, Chat
-from telegram.ext import CommandHandler
+from telegram.ext import CommandHandler, CallbackContext
 from bot import dispatcher
 
 
 
-def lyrics(bot: Bot, update: Update):
+def lyrics(bot, update, context):
     msg = update.effective_message
     query = " ".join(args)
     song = ""
