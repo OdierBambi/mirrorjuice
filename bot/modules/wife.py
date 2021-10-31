@@ -13,7 +13,7 @@ async def waifu(c: Client, m: Message):
      r = await http.get("https://api.waifu.pics/sfw/waifu")
      rj = r.json()
 
-     await m.reply_photo(rj["url"], caption=f"Ini waifumu 😉")
+     await m.reply_photo(rj["url"], caption=f"Ini waifumu 😉 {message.from_user.mention}")
 
 
 WIFE_HANDLER = CommandHandler("wife", waifu)
