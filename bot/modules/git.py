@@ -1,11 +1,11 @@
 from telegram import ParseMode, Update, Bot
-from telegram.ext import CommandHandler, run_async
+from telegram.ext import CommandHandler
 from bot import dispatcher
 from requests import get
 
 
 
-@run_async
+
 def github(bot: Bot, update: Update):
     message = update.effective_message
     text = message.text[len('/git '):]
