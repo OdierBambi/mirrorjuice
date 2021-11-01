@@ -21,7 +21,7 @@ async def hastebin(c: Client, m: Message):
         url = "https://hastebin.com/documents"
         r = await http.post(url, data=mean.encode("UTF-8"))
         url = f"https://hastebin.com/{r.json()['key']}"
-        await m.reply_photo("https://telegra.ph/file/c512c0c73cc0f45c4bc63.jpg", url)
+        await m.reply_photo('https://telegra.ph/file/035a463a52268420f6a0c.jpg', caption=url)
     else:
         await m.reply_text("reply_to_document_or_text")
 
