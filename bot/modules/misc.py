@@ -52,6 +52,7 @@ async def showid(client, message):
             quote=True
         )
 
+
 @app.on_message(filters.command(["info"]))
 async def who_is(client, message):
     # https://github.com/SpEcHiDe/PyroGramBot/blob/master/pyrobot/plugins/admemes/whois.py#L19
@@ -99,10 +100,10 @@ async def who_is(client, message):
             local_user_photo = await client.download_media(
                 message=chat_photo.big_file_id
             )
-            buttons = [[
+            button = [[
                 InlineKeyboardButton('🔐 Close', callback_data='cbclose')
             ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
+            reply_markup = InlineKeyboardMarkup(button)
             await message.reply_photo(
                 photo=local_user_photo,
                 quote=True,
@@ -113,10 +114,10 @@ async def who_is(client, message):
             )
             os.remove(local_user_photo)
         else:
-            buttons = [[
+            button = [[
                 InlineKeyboardButton('🔐 Close', callback_data='cbclose')
             ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
+            reply_markup = InlineKeyboardMarkup(button)
             await message.reply_text(
                 text=message_out_str,
                 reply_markup=reply_markup,
@@ -125,6 +126,17 @@ async def who_is(client, message):
                 disable_notification=True
             )
         await status_message.delete()
+
+
+@app.on_callback_query() # callbackQuery()
+async def cbclose(bot, update):  
+    if update.data == "cbinfo":
+        await update.message.edit_text(
+            text=message_out_str,
+            reply_markup=BUTTON,
+            disable_web_page_preview=True
+        )
+
 
 @app.on_message(filters.command(["imdb"]))
 async def imdb_search(client, message):
