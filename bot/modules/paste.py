@@ -16,12 +16,12 @@ async def hastebin(c: Client, m: Message):
                 mean = fd.read().decode("UTF-8")
         if m.reply_to_message.text:
             mean = m.reply_to_message.text
-        
+        image = "https://telegra.ph/file/c512c0c73cc0f45c4bc63.jpg"
         http = httpx.AsyncClient(http2=True)
         url = "https://hastebin.com/documents"
         r = await http.post(url, data=mean.encode("UTF-8"))
         url = f"https://hastebin.com/{r.json()['key']}"
-        await m.reply_photo(f'https://telegra.ph/file/c512c0c73cc0f45c4bc63.jpg', url, disable_web_page_preview=True)
+        await m.reply_text(image, url, disable_web_page_preview=True)
     else:
         await m.reply_text("reply_to_document_or_text")
 
