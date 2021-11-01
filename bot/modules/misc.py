@@ -101,7 +101,8 @@ async def who_is(client, message):
                 message=chat_photo.big_file_id
             )
             button = [[
-                InlineKeyboardButton('🔐 Close', callback_data='cbclose')
+                InlineKeyboardButton('👤Owner', url='https://t.me/OdierBambi'),
+                InlineKeyboardButton('🔐 Close', callback_data='close')
             ]]
             reply_markup = InlineKeyboardMarkup(button)
             await message.reply_photo(
@@ -115,7 +116,8 @@ async def who_is(client, message):
             os.remove(local_user_photo)
         else:
             button = [[
-                InlineKeyboardButton('🔐 Close', callback_data='cbclose')
+                InlineKeyboardButton('👤Owner', url='https://t.me/OdierBambi'),
+                InlineKeyboardButton('🔐 Close', callback_data='close')
             ]]
             reply_markup = InlineKeyboardMarkup(button)
             await message.reply_text(
@@ -130,64 +132,7 @@ async def who_is(client, message):
 
 @app.on_callback_query() # callbackQuery()
 async def cbclose(bot, update):  
-    if update.data == "cbinfo":
-        await update.message.edit_text(
-            text=message_out_str,
-            reply_markup=BUTTON,
-            disable_web_page_preview=True
-        )
+    if update.data == "close":
+        await update.message.delete()
 
 
-@app.on_message(filters.command(["imdb"]))
-async def imdb_search(client, message):
-    if ' ' in message.text:
-        k = await message.reply('Searching ImDB')
-        r, title = message.text.split(None, 1)
-        movies = await get_poster(title, bulk=True)
-        if not movies:
-            return await message.reply("No results Found")
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"imdb#{movie.movieID}",
-                )
-            ]
-            for movie in movies
-        ]
-        await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        await message.reply('Give me a movie / series Name')
-
-@app.on_callback_query(filters.regex('^imdb'))
-async def imdb_callback(bot: Client, query: CallbackQuery):
-    i, movie = query.data.split('#')
-    imdb = await get_poster(query=movie, id=True)
-    btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{imdb.get('title')} - {imdb.get('year')}",
-                    url=imdb['url'],
-                )
-            ]
-        ]
-    if imdb.get('poster'):
-        await query.message.reply_photo(photo=imdb['poster'], caption=f"IMDb Data:\n\n🏷 Title:<a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year:<a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n🖋 StoryLine: <code>{imdb.get('plot')} </code>", reply_markup=InlineKeyboardMarkup(btn))
-        await query.message.delete()
-    else:
-        await query.message.edit(f"IMDb Data:\n\n🏷 Title:<a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year:<a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n🖋 StoryLine: <code>{imdb.get('plot')} </code>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-    await query.answer()
-    
-    
-ID_HANDLER = CommandHandler("id", showid)
-INFO_HANDLER = CommandHandler("info", who_is)
-IMDB_HANDLER = CommandHandler("imdb", imdb_search)
-
-dispatcher.add_handler(ID_HANDLER)
-dispatcher.add_handler(INFO_HANDLER)
-dispatcher.add_handler(IMDB_HANDLER)
-
-        
-        
-
-        
