@@ -11,8 +11,8 @@ from bot import app
 @app.on_message(filters.command(['omdb']))
 async def imdbcmd(client, message):
     movie_name = message.text.split("/omdb")
-    lg_cd = movie_info[1].lower().replace(" ", "")
-    movie_info = get_movie_info(movie_name)
+    movie_search = movie_name[1].lower().replace(" ", "")
+    movie_info = get_movie_info(movie_search)
     if movie_info:
                   poster = movie_info["pimage"]
                   urlid = movie_info['imdb_id']
