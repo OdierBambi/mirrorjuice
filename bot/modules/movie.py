@@ -1,4 +1,5 @@
 import pyrogram
+from requests import get
 from asyncio import sleep
 from pyrogram import Client, filters
 from pyrogram.types import User, Message
