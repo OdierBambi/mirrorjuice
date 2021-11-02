@@ -1,17 +1,16 @@
 import pyrogram
-from requests import get
 from asyncio import sleep
 from pyrogram import Client, filters
 from pyrogram.types import User, Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from bot.helper import omdb
+from bot.helper.omdb import get_movie_info
 from bot import app
 
 
             
 @app.on_message(filters.command(['omdb']))
 async def imdbcmd(client, message):
-    movie_name = message.text.split(' ')[1]
+    movie_name = message.text.split(' ')[2]
     movie_info = get_movie_info(movie_name)
     if movie_info:
                   poster = movie_info["pimage"]
