@@ -8,9 +8,9 @@ from bot import app
 
 
             
-@app.on_message(filters.text)
+@app.on_message(filters.command(["omdb"]))
 async def imdbcmd(client, message):
-    movie_name = message.text
+    movie_name = requote_uri(message.text.split(" ", 1)[1])
     movie_info = get_movie_info(movie_name)
     if movie_info:
                   poster = movie_info["pimage"]
