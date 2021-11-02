@@ -3,7 +3,7 @@
 import os
 import requests
 
-API_KEY = "http://www.omdbapi.com/?i=tt3896198&apikey=3f14d43c"
+API_KEY = "3f14d43c"
 
 def get_movie_info(movieTitle):
     url = 'http://www.omdbapi.com'
