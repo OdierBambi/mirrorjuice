@@ -96,7 +96,7 @@ async def start(bot, update):
         reply_markup=START_BUTTONS
     )
 
-@app.on_message(filters.private & (filters.photo | filters.document))
+@app.on_message(filters.command(["removebg"]))
 async def remove_background(bot, update):
     if not REMOVEBG_API:
         await update.reply_text(
@@ -106,6 +106,9 @@ async def remove_background(bot, update):
             reply_markup=ERROR_BUTTONS
         )
         return
+        if (replied and replied.media
+           and (replied.photo
+                or (replied.document and "image" in replied.document.mime_type))):
     await update.reply_chat_action("typing")
     message = await update.reply_text(
         text="Processing",
