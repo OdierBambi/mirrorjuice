@@ -1,5 +1,5 @@
 import os
-from pyrogram import filters
+from pyrogram import Client, filters
 from removebg import RemoveBg
 from pyrogram.types import Message
 from bot import app
