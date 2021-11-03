@@ -28,7 +28,7 @@ psycopg2-binary
 pymongo
 pybase64
 pyrogram
-pyqrcode
+removebg
 pyshorteners
 python-dotenv
 python-magic
