@@ -7,7 +7,7 @@ from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
 from telegram import Update
 
 
-@Client.on_message(filters.regex(pattern=".*http.*") & filters.private)
+@app.on_message(filters.command(["mkqr"]))
 def qrcode(update: Update, context: CallbackContext):
     text = message.text.split(" ", 1)[1]
     message_id = update.message.message_id
