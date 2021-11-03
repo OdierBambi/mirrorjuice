@@ -114,11 +114,11 @@ async def remove_background(bot, update):
     )
     new_file = PATH + str(update.from_user.id) + "/"
     new_file_name = new_file + "no_bg."
-    replied = message.reply_to_message
+    replied = update.reply_to_message
     if replied.photo or (replied.document and "image" in replied.document.mime_type):
         new_file_name += "png"
         file = await update.download(PATH+str(update.from_user.id))
-        await message.edit_text(
+        await update.edit_text(
             text="Photo downloaded successfully. Now removing background.",
             disable_web_page_preview=True
         )
@@ -126,7 +126,7 @@ async def remove_background(bot, update):
     elif update.video or (update.document and "video" in update.document.mime_type):
         new_file_name += "webm"
         file = await update.download(PATH+str(update.from_user.id))
-        await message.reply_text(
+        await upload.reply_text(
             text="Photo downloaded successfully. Now removing background.",
             disable_web_page_preview=True
         )
@@ -138,7 +138,7 @@ async def remove_background(bot, update):
             file.write(new_document.content)
         await update.reply_chat_action("upload_document")
     else:
-        await message.reply_text(text="API is error.", reply_markup=ERROR_BUTTONS)
+        await update.reply_text(text="API is error.", reply_markup=ERROR_BUTTONS)
         return
     try:
         await update.reply_document(document=new_file_name, quote=True)
