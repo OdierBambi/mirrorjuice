@@ -22,7 +22,6 @@ async def remove_background(client, message):
     if (replied and replied.media
             and (replied.photo
                  or (replied.document and "image" in replied.document.mime_type))):
-        start_t = datetime.now()
         if os.path.exists(PATH):
             os.remove(PATH)
         await message.client.download_media(message=replied,
