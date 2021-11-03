@@ -1,45 +1,48 @@
+import os
+from pyrogram import Client, filters
+from telegraph import upload_file
+import pyqrcode
+from pyrogram.types import Message
+from bot import app
+from bot.helper.display_progress import progress
 
-import os
-from pyrogram import Client, filters
-from telegraph import upload_file
-import pyqrcode
-from messages import Msg
-from bot.helper.display_progress import progress
-
-
-@app.on_message(filters.command(["encode"]))
-async def qr_encode(client, message):
-    qr = await app.send_message(
-        chat_id=message.chat.id,
-        text="Making your QR code... 😁",
-        reply_to_message_id=message.message_id
-    )
+
+
+
+
+@app.on_message(filters.command(["encode"]))
+async def qr_encode(client, message):
+    qr = await app.send_message(
+        chat_id=message.chat.id,
+        text="Making your QR code... 😁",
+        reply_to_message_id=message.message_id
+    )
     s = str(message.text.split(" ", 1)[1]
-    qrname = str(message.text.split(" ", 1)[1])
-    qrcode = pyqrcode.create(s)
-    qrcode.png(qrname + '.png', scale=6)
-    img = qrname + '.png'
-    try:
-        response = upload_file(img)
-    except Exception as error:
-        await qr.edit_text(f"{Msg.error}")
-        return
-    try:
-        await message.reply_photo(
-            photo=img,
-            progress=progress,
-            progress_args=(
-                "Trying to Uploading....",
-                qr
-            )
-        )
-
-    except Exception as error:
-        print(error)
-
-    await qr.edit_text(f"https://telegra.ph{response[0]}")
-
-    try:
-        os.remove(img)
-    except Exception as error:
+    qrname = str(message.text.split(" ", 1)[1])
+    qrcode = pyqrcode.create(s)
+    qrcode.png(qrname + '.png', scale=6)
+    img = qrname + '.png'
+    try:
+        response = upload_file(img)
+    except Exception as error:
+        await qr.edit_text(f"error bro")
+        return
+    try:
+        await message.reply_photo(
+            photo=img,
+            progress=progress,
+            progress_args=(
+                "Trying to Uploading....",
+                qr
+            )
+        )
+
+    except Exception as error:
+        print(error)
+
+    await qr.edit_text(f"https://telegra.ph{response[0]}")
+
+    try:
+        os.remove(img)
+    except Exception as error:
         print('Something is {error}')
