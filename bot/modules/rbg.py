@@ -108,13 +108,12 @@ async def remove_background(bot, update):
         return
         if (replied and replied.media
            and (replied.photo
-                or (replied.document and "image" in replied.document.mime_type))):
-    await update.reply_chat_action("typing")
-    message = await update.reply_text(
-        text="Processing",
-        quote=True,
-        disable_web_page_preview=True
-    )
+                or (replied.document and "image" in replied.document.mime_type))): 
+       await update.reply_text(
+           text="Processing",
+           quote=True,
+           disable_web_page_preview=True
+        )
     new_file = PATH + str(update.from_user.id) + "/"
     new_file_name = new_file + "no_bg."
     if update.photo or (update.document and "image" in update.document.mime_type):
