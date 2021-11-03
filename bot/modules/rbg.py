@@ -24,14 +24,14 @@ async def remove_background(client, message):
                  or (replied.document and "image" in replied.document.mime_type))):
         if os.path.exists(PATH):
             os.remove(PATH)
-        await message.client.download_media(message=replied,
+        await bot.download_media(message=replied,
                                             file_name=PATH
                                             )        
         try:
             rmbg = RemoveBg(REMOVE_BG_API)
             rmbg.remove_background_from_img_file(PATH)
             rbg_path = PATH + "_no_bg.png"
-            await message.client.send_document(
+            await bot.send_document(
                 chat_id=message.chat.id,
                 document=rbg_path,
                 disable_notification=True,
