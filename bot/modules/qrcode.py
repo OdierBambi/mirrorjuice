@@ -7,7 +7,6 @@ from bot import app
 
 @app.on_message(filters.command(["mkqr"]))
 def qrcode(client, message):
-
     text = update.message.text.split(" ", 1)[1]
     message_id = update.message.message_id
     qr_file = f'{message_id}.png'
