@@ -17,7 +17,7 @@ async def remove_background(client, message):
             disable_web_page_preview=True
           )
         return
-    await message.edit_text("Analysing...")
+    await message.reply_text("Analysing...")
     replied = message.reply_to_message
     if (replied and replied.media
             and (replied.photo
@@ -39,7 +39,7 @@ async def remove_background(client, message):
                 )
             await message.delete()
         except Exception:  # pylint: disable=broad-except
-            await message.edit_text("Something went wrong!\nCheck your usage quota!")
+            await message.reply_text("Something went wrong!\nCheck your usage quota!")
             return
     else:
-        await message.edit_text("Reply to a photo to remove background!")
+        await message.reply_text("Reply to a photo to remove background!")
