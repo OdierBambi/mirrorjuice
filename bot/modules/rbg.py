@@ -8,6 +8,15 @@ REMOVE_BG_API = "cvwHMNycC6yQdGJeRZgWLt2Y"
 PATH = "./DOWNLOADS/"
 
 
+def removebg_image(file):
+    return requests.post(
+        "https://api.remove.bg/v1.0/removebg",
+        files={"image_file": open(file, "rb")},
+        data={"size": "auto"},
+        headers={"X-Api-Key": REMOVE_BG_API}
+    )
+
+
 @app.on_message(filters.command(["removebg"]))
 async def remove_background(client, message):
     if not REMOVE_BG_API:
@@ -42,12 +51,3 @@ async def remove_background(client, message):
             pass
         except Exception:  # pylint: disable=broad-except
             await message.reply_text("Something went wrong!\nCheck your usage quota!")
-
-
-def removebg_image(file):
-    return requests.post(
-        "https://api.remove.bg/v1.0/removebg",
-        files={"image_file": open(file, "rb")},
-        data={"size": "auto"},
-        headers={"X-Api-Key": REMOVE_BG_API}
-    )
