@@ -115,7 +115,9 @@ async def remove_background(bot, update):
     new_file = PATH + str(update.from_user.id) + "/"
     new_file_name = new_file + "no_bg."
     replied = update.reply_to_message
-    if replied.photo or (replied.document and "image" in replied.document.mime_type):
+    if (replied and replied.media
+            and (replied.photo
+                 or (replied.document and "image" in replied.document.mime_type))):
         new_file_name += "png"
         file = await update.download(PATH+str(update.from_user.id))
         await update.edit_text(
