@@ -30,6 +30,7 @@ pybase64
 pyrogram
 removebg
 pyshorteners
+pyqrcode
 python-dotenv
 python-magic
 python-telegram-bot
