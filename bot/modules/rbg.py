@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from removebg import RemoveBg
-from ptrogram.types import Message
+from pyrogram.types import Message
 from bot import app
 
 REMOVE_BG_API = "cvwHMNycC6yQdGJeRZgWLt2Y"
