@@ -106,17 +106,16 @@ async def remove_background(bot, update):
             reply_markup=ERROR_BUTTONS
         )
         return
-        if (replied and replied.media
-           and (replied.photo
-                or (replied.document and "image" in replied.document.mime_type))): 
-       await update.reply_text(
-           text="Processing",
-           quote=True,
-           disable_web_page_preview=True
-        )
+    await update.reply_chat_action("typing")
+    message = await update.reply_text(
+        text="Processing",
+        quote=True,
+        disable_web_page_preview=True
+    )
     new_file = PATH + str(update.from_user.id) + "/"
     new_file_name = new_file + "no_bg."
-    if update.photo or (update.document and "image" in update.document.mime_type):
+    replied = message.reply_to_message
+    if replied.photo or (replied.document and "image" in replied.document.mime_type):
         new_file_name += "png"
         file = await update.download(PATH+str(update.from_user.id))
         await message.edit_text(
@@ -127,19 +126,19 @@ async def remove_background(bot, update):
     elif update.video or (update.document and "video" in update.document.mime_type):
         new_file_name += "webm"
         file = await update.download(PATH+str(update.from_user.id))
-        await message.edit_text(
+        await message.reply_text(
             text="Photo downloaded successfully. Now removing background.",
             disable_web_page_preview=True
         )
         new_document = removebg_video(file)
     else:
-        await message.edit_text(text="Media not supported", disable_web_page_preview=True, reply_markup=ERROR_BUTTONS)
+        await message.reply_text(text="Media not supported", disable_web_page_preview=True, reply_markup=ERROR_BUTTONS)
     if new_document.status_code == 200:
         with open(new_file_name, "wb") as file:
             file.write(new_document.content)
         await update.reply_chat_action("upload_document")
     else:
-        await message.edit_text(text="API is error.", reply_markup=ERROR_BUTTONS)
+        await message.reply_text(text="API is error.", reply_markup=ERROR_BUTTONS)
         return
     try:
         await update.reply_document(document=new_file_name, quote=True)
