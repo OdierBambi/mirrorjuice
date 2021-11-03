@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from bot import app
 
 REMOVE_BG_API = "cvwHMNycC6yQdGJeRZgWLt2Y"
-PATH = "./DOWNLOADS/"
+PATH = "./usr/src/app/downloads/"
 
 
 @app.on_message(filters.command(["removebg"]))
