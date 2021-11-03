@@ -21,8 +21,7 @@ async def remove_background(client, message):
     replied = message.reply_to_message
     if (replied and replied.media
             and (replied.photo
-                 or (replied.document and "image" in replied.document.mime_type))):        
-        try:
+                 or (replied.document and "image" in replied.document.mime_type))):
             rmbg = RemoveBg(REMOVE_BG_API)
             rmbg.remove_background_from_img_file(PATH)
             rbg_path = PATH + "_no_bg.png"
