@@ -24,7 +24,7 @@ async def remove_background(client, message):
     if (replied and replied.media
             and (replied.photo
                  or (replied.document and "image" in replied.document.mime_type))):
-        file = await update.download(PATH+str(update.from_user.id))
+        file = await message.download(PATH+str(update.from_user.id))
         await message.edit_text(
             text="Photo downloaded successfully. Now removing background.",
             disable_web_page_preview=True
