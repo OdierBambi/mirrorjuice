@@ -51,5 +51,5 @@ def removebg_image(file):
         "https://api.remove.bg/v1.0/removebg",
         files={"image_file": open(file, "rb")},
         data={"size": "auto"},
-        headers={"X-Api-Key": REMOVEBG_API}
+        headers={"X-Api-Key": REMOVE_BG_API}
     )
