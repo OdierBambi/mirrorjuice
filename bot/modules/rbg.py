@@ -27,8 +27,7 @@ async def remove_background(message: Message):
             os.remove(PATH)
         await message.client.download_media(message=replied,
                                             file_name=PATH
-                                            )
-        
+                                            )        
         try:
             rmbg = RemoveBg(REMOVE_BG_API)
             rmbg.remove_background_from_img_file(PATH)
