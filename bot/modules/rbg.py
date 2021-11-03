@@ -51,3 +51,5 @@ async def remove_background(client, message):
             pass
         except Exception:  # pylint: disable=broad-except
             await message.reply_text("Something went wrong!\nCheck your usage quota!")
+     else:
+        await message.reply_text("Reply to a photo to remove background!")
