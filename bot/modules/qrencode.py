@@ -18,7 +18,7 @@ async def qr_encode(client, message):
         reply_to_message_id=message.message_id
     )
     s = str(message.text.split(" ", 1)[1]
-    qrname = str(message.text.split(" ", 1)[1]
+    qrname = str(message.from_user.id)
     qrcode = pyqrcode.create(s)
     qrcode.png(qrname + '.png', scale=6)
     img = qrname + '.png'
