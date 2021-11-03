@@ -1,12 +1,12 @@
 import asyncio
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.types import Message
 from bot import app
 
 
 @app.on_message(filters.command(["hack"]))
-async def hack_func(message):
-    user = await message.client.get_user_dict(message.from_user.id)
+async def hack_func(client, message):
+    user = await message.from_user.id
     heckerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
