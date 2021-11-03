@@ -1,5 +1,5 @@
 import asyncio
-from pyrogram.types import message
+from pyrogram.types import Message
 from bot import app
 
 
