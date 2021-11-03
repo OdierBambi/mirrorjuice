@@ -9,7 +9,7 @@ PATH = "./DOWNLOADS/"
 
 
 @app.on_message(filters.command(["removebg"]))
-async def remove_background(message):
+async def remove_background(client, message):
     if not REMOVE_BG_API:
         await update.reply_text(
             text="Error :- Remove BG Api is error",
