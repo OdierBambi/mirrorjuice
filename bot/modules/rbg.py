@@ -4,7 +4,7 @@ from removebg import RemoveBg
 from ptrogram.types import Message
 from bot import app
 
-REMOVEBG_API = "cvwHMNycC6yQdGJeRZgWLt2Y"
+REMOVE_BG_API = "cvwHMNycC6yQdGJeRZgWLt2Y"
 PATH = "./DOWNLOADS/"
 
 
