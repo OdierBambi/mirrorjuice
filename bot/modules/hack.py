@@ -45,5 +45,5 @@ async def hack_func(client, message):
     max_ani = len(animation_chars)
     for i in range(max_ani):
         await asyncio.sleep(2)
-        await message.edit(animation_chars[i % max_ani])
-    await message.edit(hecked)
+        await message.edit_text(animation_chars[i % max_ani])
+    await message.edit_text(hecked)
