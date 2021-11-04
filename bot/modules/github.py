@@ -10,7 +10,7 @@ def git(_,message):
     user = message.text.split(' ')[1]
     res = get(f'https://api.github.com/users/{user}').json()
     if res.status_code == 200:
-    status_message = await message.reply_text("`fetching github info ...`")
+     await message.reply_text("`fetching github info ...`")
         data = res.json()
         photo = data["avatar_url"]
         if data['bio']:
@@ -43,7 +43,7 @@ def git(_,message):
                                         caption=template,
                                         photo=photo,
                                         disable_notification=True)
-        await status_message.delete()
+        await message.delete()
       else:
-        await status_message.edit("No user found with `{}` username!".format(username))
+        await message.reply_text(f"No user found")
     
