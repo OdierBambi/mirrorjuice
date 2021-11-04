@@ -7,12 +7,13 @@ from bot import app, dispatcher
 
 @app.on_message(filters.command(['github']))
 def git(_,message):
+    user = message.text.split(' ')[1]
     replied = message.reply_to_message
     username = message.filtered_input_str
     if replied:
         username = replied.text
      if not username:
-        await message.eror("invalid input !")
+        await message.reply_text("invalid input !")
         return
     url = "https://api.github.com/users/{}".format(username)
     res = requests.get(url)
