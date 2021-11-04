@@ -11,8 +11,6 @@ def git(_,message):
     username = message.filtered_input_str
     if replied:
         username = message.text.split(' ')[1]
-     if not username:
-        await message.reply_text("invalid input !")
         return
     url = "https://api.github.com/users/{}".format(username)
     res = requests.get(url)
