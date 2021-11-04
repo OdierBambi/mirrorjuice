@@ -6,8 +6,7 @@ from bot import app
 
 @app.on_message(filters.command(["hack"]))
 async def hack_func(client, message):
-    user = message.from_user.id
-    heckerman = user['mention']
+    heckerman = message.from_user.mention
     animation_chars = [
         "```Connecting To Private Server \\```",
         "```Connecting To Private Server |```",
