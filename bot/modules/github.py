@@ -7,11 +7,10 @@ from bot import app, dispatcher
 
 @app.on_message(filters.command(['github']))
 def git(_,message):
-    user = message.text.split(' ')[1]
     replied = message.reply_to_message
     username = message.filtered_input_str
     if replied:
-        username = replied.text
+        username = message.text.split(' ')[1]
      if not username:
         await message.reply_text("invalid input !")
         return
