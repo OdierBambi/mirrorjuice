@@ -40,7 +40,7 @@ async def who_is(client, message):
         username = from_user.username or "<b>None</b>"
         bio = desc if desc else "`No bio set up`"
         profile_pics = pic_count
-        message_out_str += f"<b>╰┈➤Bio:</b> <code>{profile_pics}</code>\n"
+        message_out_str += f"<b>╰┈➤Profile pics:</b> <code>{profile_pics}</code>\n"
         dc_id = from_user.dc_id or "[User Doesnt Have A Valid DP]"
         message_out_str += f"<b>╰┈➤Data Centre:</b> <code>{dc_id}</code>\n"
         message_out_str += f"<b>╰┈➤Bio:</b> <code>{bio}</code>\n"
