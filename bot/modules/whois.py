@@ -23,7 +23,7 @@ async def who_is(client, message):
     from_user_id, _ = extract_user(message)
     try:
         from_user = await client.get_users(from_user_id)
-        desc = await client.get_chat(get_user)
+        desc = await client.get_chat(from_user_id)
         desc = desc.description
         pic_count = await client.get_profile_photos_count(user.id)
     except Exception as error:
