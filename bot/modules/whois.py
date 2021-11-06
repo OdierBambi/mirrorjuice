@@ -22,7 +22,7 @@ async def who_is(client, message):
     from_user_id, _ = extract_user(message)
     try:
         from_user = await client.get_users(from_user_id)
-        from_chat = await message.client.get_chat(message.reply_to_message.from_user.id)
+        from_chat = await client.get_chat(message.reply_to_message.from_user.id)
     except Exception as error:
         await status_message.edit(str(error))
         return
