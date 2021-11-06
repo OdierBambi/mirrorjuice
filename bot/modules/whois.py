@@ -25,7 +25,7 @@ async def who_is(client, message):
         from_user = await client.get_users(from_user_id)
         desc = await client.get_chat(from_user_id)
         desc = desc.description
-        pic_count = await client.get_profile_photos_count(user.id)
+        pic_count = await client.get_profile_photos_count(from_user_id)
     except Exception as error:
         await status_message.edit(str(error))
         return
