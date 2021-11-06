@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from bot.helper.extract_user import extract_user
 from bot.helper.last_online_hlpr import last_online
-import time
+from time import sleep
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, Message, User
 from bot import app, dispatcher
@@ -23,7 +23,7 @@ async def who_is(client, message):
     from_user_id, _ = extract_user(message)
     try:
         from_user = await client.get_users(from_user_id)
-        desc = await client.get_users(from_user_id)
+        desc = await client.get_chat(from_user_id)
         desc = desc.description
         pic_count = await client.get_profile_photos_count(from_user_id)
     except Exception as error:
