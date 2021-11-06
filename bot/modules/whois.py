@@ -27,6 +27,7 @@ async def who_is(client, message):
         desc = await client.get_chat(from_user_id)
         desc = desc.description
         pic_count = await client.get_profile_photos_count(from_user_id)
+        reply = message.reply_to_message
     except Exception as error:
         await status_message.edit(str(error))
         return
@@ -39,7 +40,7 @@ async def who_is(client, message):
         message_out_str += f"<b>╰┈➤Last Name:</b> {last_name}\n"
         message_out_str += f"<b>╰┈➤Telegram ID:</b> <code>{from_user.id}</code>\n"
         username = from_user.username or "<b>None</b>"
-        bio = desc if desc else
+        bio = reply_chat.bio or "none"
         profile_pics = pic_count
         message_out_str += f"<b>╰┈➤Profile pics:</b> <code>{profile_pics}</code>\n"
         dc_id = from_user.dc_id or "[User Doesnt Have A Valid DP]"
