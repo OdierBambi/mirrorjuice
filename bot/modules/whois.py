@@ -39,7 +39,7 @@ async def who_is(client, message):
         message_out_str += f"<b>╰┈➤Last Name:</b> {last_name}\n"
         message_out_str += f"<b>╰┈➤Telegram ID:</b> <code>{from_user.id}</code>\n"
         username = from_user.username or "<b>None</b>"
-        bio = desc if desc
+        bio = desc if desc else
         profile_pics = pic_count
         message_out_str += f"<b>╰┈➤Profile pics:</b> <code>{profile_pics}</code>\n"
         dc_id = from_user.dc_id or "[User Doesnt Have A Valid DP]"
