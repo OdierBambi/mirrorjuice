@@ -4,7 +4,7 @@ import os
 import asyncio
 import platform
 
-from pyrogram import idle filters
+from pyrogram import idle, filters
 from sys import executable
 from datetime import datetime
 from pytz import timezone
