@@ -53,7 +53,6 @@ def stats(update, context):
             f'<b>💻 CPU :</b> <code>{cpuUsage}%</code> ' \
             f'<b>🧭 RAM :</b> <code>{memory}%</code> ' \
             f'<b>💿 DISK :</b> <code>{disk}%</code>\n' \
-            f'<b>📨 Modules :</b> {len(modules)} Modules\n' \
             f'<b>🔥 Python Version :</b> {python_version()}\n' \
             f'<b>🤖 Name : @AsubuntungBot</b>'
     sendMessage(stats, context.bot, update)
@@ -92,7 +91,7 @@ def restart(update, context):
 
 @app.on_message(filters.command(["ping"]))
 async def ping(client, message):
-    uptime = await get_readable_time((time.time() - boStartTime))
+    uptime = await get_readable_time((time.time() - botStartTime))
     start = datetime.now()
     await message.reply_text("8✊===D")
     await message.edit_text("8=✊==D")
