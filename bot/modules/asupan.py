@@ -11,8 +11,7 @@ async def chika(c: Client, m: Message):
      r = await http.get("https://api-tede.herokuapp.com/api/chika")
      response = r.json()
      await m.reply_video(response["url"])
-except Exception: 
-     await m.reply_text("**Tidak bisa menemukan video chikaku.**")
+
 
 
 @app.on_message(filters.command(["wibu"]))
@@ -21,5 +20,3 @@ async def wibu(c: Client, m: Message):
      r = await http.get("https://api-tede.herokuapp.com/api/asupan/wibu")
      wib = r.json()
      await m.reply_video(wib["url"])
-except Exception:
-     await m.reply_text("**Tidak bisa menemukan video wibu.**")
