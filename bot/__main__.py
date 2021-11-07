@@ -105,7 +105,7 @@ async def ping(client, message):
     await m.edit_text("**✦҈͜͡➳ PONG!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    user = await bot.get_me()
+    user = bot.get_me()
     await ping.edit(
         f"❃ **Ping !!** "
         f"`%sms` \n"
