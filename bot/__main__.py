@@ -4,7 +4,7 @@ import os
 import asyncio
 import platform
 
-from pyrogram import idle
+from pyrogram import idle filters
 from sys import executable
 from datetime import datetime
 from pytz import timezone
@@ -43,7 +43,6 @@ def stats(update, context):
     recv = get_readable_file_size(psutil.net_io_counters().bytes_recv)
     cpuUsage = psutil.cpu_percent(interval=0.5)
     memory = psutil.virtual_memory().percent
-    modules = bot.get_modules()
     disk = psutil.disk_usage('/').percent
     stats = f'<b>💻 Waktu Aktif Bot :</b> <code>{currentTime}</code>\n' \
             f'<b>🖥 Total Kapasitas Disk :</b> <code>{total}</code>\n' \
@@ -91,12 +90,34 @@ def restart(update, context):
     web.terminate()
     os.execl(executable, executable, "-m", "bot")
 
-
-def ping(update, context):
-    start_time = int(round(time.time() * 1000))
-    reply = sendMessage("Starting Ping", context.bot, update)
-    end_time = int(round(time.time() * 1000))
-    editMessage(f'{end_time - start_time} ms', reply)
+@app.on_message(filters.command(["ping"]))
+async def ping(client, message):
+    uptime = await get_readable_time((time.time() - boStartTime))
+    start = datetime.now()
+    await message.reply_text("8✊===D")
+    await message.edit_text("8=✊==D")
+    await message.edit_text("8==✊=D")
+    await message.edit_text("8===✊D")
+    await message.edit_text("8==✊=D")
+    await message.edit_text("8=✊==D")
+    await message.edit_text("8✊===D")
+    await message.edit_text("8=✊==D")
+    await message.edit_text("8==✊=D")
+    await message.edit_text("8===✊D")
+    await message.edit_text("8==✊=D")
+    await message.edit_text("8=✊==D")
+    await pong.edit("8✊===D")
+    await pong.edit("8=✊==D")
+    await message.edit_text("8==✊=D")
+    await message.edit_text("8===✊D")
+    await message.edit_text("8===✊D💦")
+    await message.edit_text("8====D💦💦")
+    await message.edit_text("**CROOTTTT PINGGGG!**")
+    end = datetime.now()
+    duration = (end - start).microseconds / 1000
+    await pong.edit(
+        f"**NGENTOT!! 🐨**\n**KAMPANG** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration)
+    )
 
 
 def log(update, context):
@@ -279,7 +300,6 @@ def main():
                                    stats, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
     log_handler = CommandHandler(BotCommands.LogCommand, log, filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
     dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(ping_handler)
     dispatcher.add_handler(restart_handler)
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(stats_handler)
