@@ -43,6 +43,7 @@ def stats(update, context):
     recv = get_readable_file_size(psutil.net_io_counters().bytes_recv)
     cpuUsage = psutil.cpu_percent(interval=0.5)
     memory = psutil.virtual_memory().percent
+    modules = bot.manager.get_modules()
     disk = psutil.disk_usage('/').percent
     stats = f'<b>💻 Waktu Aktif Bot :</b> <code>{currentTime}</code>\n' \
             f'<b>🖥 Total Kapasitas Disk :</b> <code>{total}</code>\n' \
