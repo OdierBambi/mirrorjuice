@@ -9,6 +9,7 @@ from sys import executable
 from datetime import datetime
 from pytz import timezone
 from platform import python_version
+from pyrogram import __version__ as ve
 
 from telegram import ParseMode
 from telegram.ext import CommandHandler
@@ -53,7 +54,8 @@ def stats(update, context):
             f'<b>💻 CPU :</b> <code>{cpuUsage}%</code> ' \
             f'<b>🧭 RAM :</b> <code>{memory}%</code> ' \
             f'<b>💿 DISK :</b> <code>{disk}%</code>\n' \
-            f'<b>🔥 Python Version :</b> {python_version()}\n' \
+            f'<b>🐍 Python Version :</b> {python_version()}\n' \
+            f'<b>🔥 Pyrogram Version :</b> {python_version()}\n' \
             f'<b>🤖 Name : @AsubuntungBot</b>'
     sendMessage(stats, context.bot, update)
 
@@ -91,7 +93,7 @@ def restart(update, context):
 
 @app.on_message(filters.command(["ping"]))
 async def ping(client, message):
-    uptime = await get_readable_time((time.time() - botStartTime))
+    uptime = get_readable_time((time.time() - botStartTime))
     start = datetime.now()
     await message.reply_text("8✊===D")
     await message.edit_text("8=✊==D")
@@ -114,7 +116,7 @@ async def ping(client, message):
     await message.edit_text("**CROOTTTT PINGGGG!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit(
+    await message.edit_text.edit(
         f"**NGENTOT!! 🐨**\n**KAMPANG** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration)
     )
 
