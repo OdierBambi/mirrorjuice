@@ -12,7 +12,4 @@ async def chika(c: Client, m: Message):
      r = await http.get("https://api-tede.herokuapp.com/api/chika")
      response = r.json()
 
-    await c.send_video(
-    chat_id=message.chat.id,
-    response["url"]
-)
+     await m.reply_video(response["url"])
