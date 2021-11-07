@@ -22,4 +22,4 @@ async def wibu(c: Client, m: Message):
      wib = r.json()
      await m.reply_video(wib["url"])
 except Exception:
-     await message.reply_text("**Tidak bisa menemukan video wibu.**")
+     await m.reply_text("**Tidak bisa menemukan video wibu.**")
