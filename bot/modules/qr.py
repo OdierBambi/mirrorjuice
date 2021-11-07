@@ -23,7 +23,7 @@ async def generate_qr(client, message):
 
 
 @app.on_message(filters.command(["qrscan"]) & filters.reply)
-async def scan_qr(_, message: Message):
+async def scan_qr(client, message):
     await message.reply_to_message.download('bot/qr.png')
     img = cv2.imread('downloads/qr.png')
     detector = cv2.QRCodeDetector()
