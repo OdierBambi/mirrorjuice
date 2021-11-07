@@ -36,6 +36,8 @@ python-dotenv
 python-magic
 python-telegram-bot
 qbittorrent-api
+qrcode[pil]
+opencv-python
 requests
 speedtest-cli
 search-engine-parser
