@@ -55,7 +55,7 @@ def stats(update, context):
             f'<b>🧭 RAM :</b> <code>{memory}%</code> ' \
             f'<b>💿 DISK :</b> <code>{disk}%</code>\n' \
             f'<b>🐍 Python Version :</b> {python_version()}\n' \
-            f'<b>🔥 Pyrogram Version :</b> {python_version()}\n' \
+            f'<b>🔥 Pyrogram Version :</b> {__version__}\n' \
             f'<b>🤖 Name : @AsubuntungBot</b>'
     sendMessage(stats, context.bot, update)
 
