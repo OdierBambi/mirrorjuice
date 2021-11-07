@@ -116,7 +116,7 @@ async def ping(client, message):
     await m.edit_text("**CROOTTTT PINGGGG!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await message.edit_text(
+    await m.edit_text(
         f"**NGENTOT!! 🐨**\n**KAMPANG** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration)
     )
 
