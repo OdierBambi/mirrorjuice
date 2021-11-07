@@ -55,7 +55,7 @@ def stats(update, context):
             f'<b>🧭 RAM :</b> <code>{memory}%</code> ' \
             f'<b>💿 DISK :</b> <code>{disk}%</code>\n' \
             f'<b>🐍 Python Version :</b> {python_version()}\n' \
-            f'<b>🔥 Pyrogram Version :</b> {__version__}\n' \
+            f'<b>🔥 Pyrogram Version :</b> {ve}\n' \
             f'<b>🤖 Name : @AsubuntungBot</b>'
     sendMessage(stats, context.bot, update)
 
@@ -95,28 +95,28 @@ def restart(update, context):
 async def ping(client, message):
     uptime = get_readable_time((time.time() - botStartTime))
     start = datetime.now()
-    await message.reply_text("8✊===D")
-    await message.edit_text("8=✊==D")
-    await message.edit_text("8==✊=D")
-    await message.edit_text("8===✊D")
-    await message.edit_text("8==✊=D")
-    await message.edit_text("8=✊==D")
-    await message.edit_text("8✊===D")
-    await message.edit_text("8=✊==D")
-    await message.edit_text("8==✊=D")
-    await message.edit_text("8===✊D")
-    await message.edit_text("8==✊=D")
-    await message.edit_text("8=✊==D")
-    await pong.edit("8✊===D")
-    await pong.edit("8=✊==D")
-    await message.edit_text("8==✊=D")
-    await message.edit_text("8===✊D")
-    await message.edit_text("8===✊D💦")
-    await message.edit_text("8====D💦💦")
-    await message.edit_text("**CROOTTTT PINGGGG!**")
+    m = await message.reply_text("8✊===D")
+    await m.edit_text("8=✊==D")
+    await m.edit_text("8==✊=D")
+    await m.edit_text("8===✊D")
+    await m.edit_text("8==✊=D")
+    await m.edit_text("8=✊==D")
+    await m.edit_text("8✊===D")
+    await m.edit_text("8=✊==D")
+    await m.edit_text("8==✊=D")
+    await m.edit_text("8===✊D")
+    await m.edit_text("8==✊=D")
+    await m.edit_text("8=✊==D")
+    await m.edit_text("8✊===D")
+    await m.edit_text("8=✊==D")
+    await m.edit_text("8==✊=D")
+    await m.edit_text("8===✊D")
+    await m.edit_text("8===✊D💦")
+    await m.edit_text("8====D💦💦")
+    await m.edit_text("**CROOTTTT PINGGGG!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await message.edit_text.edit(
+    await message.edit_text(
         f"**NGENTOT!! 🐨**\n**KAMPANG** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration)
     )
 
