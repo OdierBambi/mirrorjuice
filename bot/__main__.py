@@ -98,31 +98,21 @@ def restart(update, context):
 async def ping(client, message):
     uptime = get_readable_time((time.time() - botStartTime))
     start = datetime.now()
-    m = await message.reply_text("8✊===D")
-    await m.edit_text("8=✊==D")
-    await m.edit_text("8==✊=D")
-    await m.edit_text("8===✊D")
-    await m.edit_text("8==✊=D")
-    await m.edit_text("8=✊==D")
-    await m.edit_text("8✊===D")
-    await m.edit_text("8=✊==D")
-    await m.edit_text("8==✊=D")
-    await m.edit_text("8===✊D")
-    await m.edit_text("8==✊=D")
-    await m.edit_text("8=✊==D")
-    await m.edit_text("8✊===D")
-    await m.edit_text("8=✊==D")
-    await m.edit_text("8==✊=D")
-    await m.edit_text("8===✊D")
-    await m.edit_text("8===✊D💦")
-    await m.edit_text("8====D💦💦")
-    await m.edit_text("**CROOTTTT PINGGGG!**")
+    m = await message.reply_text("**★ PING ★**")
+    await m.edit_text("**★★ PING ★★**")
+    await m.edit_text("**★★★ PING ★★★**")
+    await m.edit_text("**★★★★ PING ★★★★**")
+    await m.edit_text("**✦҈͜͡➳ PONG!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await m.edit_text(
-        f"**NGENTOT!! 🐨**\n**KAMPANG** : %sms\n**Bot Uptime** : {uptime}🕛" % {duration}
+    user = await bot.get_me()
+    await ping.edit(
+        f"❃ **Ping !!** "
+        f"`%sms` \n"
+        f"❃ **Uptime -** "
+        f"`{uptime}` \n"
+        f"**✦҈͜͡➳ Master :** [{user.first_name}](tg://user?id={user.id})" % (duration)
     )
-
 
 def log(update, context):
     sendLogFile(context.bot, update)
