@@ -2,11 +2,13 @@ import shutil, psutil
 import signal
 import os
 import asyncio
+import platform
 
 from pyrogram import idle
 from sys import executable
 from datetime import datetime
 from pytz import timezone
+from platform import python_version
 
 from telegram import ParseMode
 from telegram.ext import CommandHandler
@@ -51,6 +53,8 @@ def stats(update, context):
             f'<b>💻 CPU :</b> <code>{cpuUsage}%</code> ' \
             f'<b>🧭 RAM :</b> <code>{memory}%</code> ' \
             f'<b>💿 DISK :</b> <code>{disk}%</code>\n' \
+            f'<b>📨 Modules :</b> {len(modules)} Modules\n' \
+            f'<b>🔥 Python Version :</b> {python_version()}\n' \
             f'<b>🤖 Name : @AsubuntungBot</b>'
     sendMessage(stats, context.bot, update)
 
