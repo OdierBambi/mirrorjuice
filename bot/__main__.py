@@ -38,6 +38,8 @@ def stats(update, context):
     currentTime = get_readable_time(time.time() - botStartTime)
     total, used, free = shutil.disk_usage('.')
     total = get_readable_file_size(total)
+    boot_time_timestamp = psutil.boot_time()
+    bt = datetime.fromtimestamp(boot_time_timestamp)
     used = get_readable_file_size(used)
     free = get_readable_file_size(free)
     sent = get_readable_file_size(psutil.net_io_counters().bytes_sent)
@@ -46,6 +48,7 @@ def stats(update, context):
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
     stats = f'<b>💻 Waktu Aktif Bot :</b> <code>{currentTime}</code>\n' \
+            f'<b>⏰Waktu Hidup:</b> {bt.day}/{bt.month}/{bt.year}  {bt.hour}:{bt.minute}:{bt.second}\n\n' \
             f'<b>🖥 Total Kapasitas Disk :</b> <code>{total}</code>\n' \
             f'<b>💿 Penggunaan :</b> <code>{used}</code>\n' \
             f'<b>💾 Sisa :</b> <code>{free}</code>\n\n' \
