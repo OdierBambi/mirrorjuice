@@ -8,7 +8,7 @@ from pyrogram.types import Message
 from bot import app
 
 
-@UserBot.on_message(filters.command(["qr"]))
+@app.on_message(filters.command(["qr"]))
 async def generate_qr(client, message):
     if qr_text := await client.extract_command_text(message):
         img = qrcode.make(qr_text)
