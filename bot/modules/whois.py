@@ -18,7 +18,6 @@ async def who_is(client, message):
     await status_message.edit(
         "`🌐 Memproses mengunggah info profil`"
     )
-    from_user = None
     from_user_id, _ = extract_user(message)
     try:
         from_user = await client.get_users(from_user_id)
