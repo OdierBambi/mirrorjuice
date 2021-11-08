@@ -25,6 +25,7 @@ nekos.py
 pillow
 psutil
 psycopg2-binary
+python-arq
 pymongo
 pybase64
 pyrogram
