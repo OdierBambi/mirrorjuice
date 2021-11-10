@@ -4,8 +4,8 @@ from pyrogram.types import Message
 from bot import app
 
 
-@app.on_message(filters.command(['google']))
-async def gsearch(message: Message):
+@app.on_message(filters.command(["google"]))
+async def gsearch(client, message):
     query = message.text.split(None, 1)[1]
     process = await message.repy_text(f"**Googling** for `{query}` ...")
     flags = message.flags
