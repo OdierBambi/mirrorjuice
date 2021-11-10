@@ -1,30 +1,27 @@
 from search_engine_parser import GoogleSearch
 from pyrogram import filters
 from pyrogram.types import Message
-from bot import app, dispatcher
-from telegram.ext import CommandHandler
+from bot import app
 
 
 @app.on_message(filters.command(['google']))
 async def gsearch(message: Message):
-    query = message.filtered_input_str
-    await message.edit(f"**Googling** for `{query}` ...")
+    query = message.text.split(None, 1)[1]
+    process = await message.repy_text(f"**Googling** for `{query}` ...")
     flags = message.flags
-    page = int(flags.get('-p', 1))
-    limit = int(flags.get('-l', 5))
     if message.reply_to_message:
-        query = message.reply_to_message.text
+        query = message.reply_to_message
     if not query:
-        await message.err("Give a query or reply to a message to google!")
+        await message.reply_text("Give a query or reply to a message to google!")
         return
     try:
         g_search = GoogleSearch()
-        gresults = await g_search.async_search(query, page)
+        gresults = await g_search.async_search(query)
     except Exception as e:
-        await message.err(e)
+        await message.reply(e)
         return
     output = ""
-    for i in range(limit):
+    for i in range:
         try:
             title = gresults["titles"][i].replace("\n", " ")
             link = gresults["links"][i]
@@ -34,10 +31,8 @@ async def gsearch(message: Message):
         except (IndexError, KeyError):
             break
     output = f"**Google Search:**\n`{query}`\n\n**Results:**\n{output}"
-    await message.edit_or_send_as_file(text=output, caption=query,
+    await process.edit(text=output, caption=query,
                                        disable_web_page_preview=True)
 
 
-GOOGLE_HANDLER = CommandHandler("google", gsearch)
 
-dispatcher.add_handler(GOOGLE_HANDLER)
