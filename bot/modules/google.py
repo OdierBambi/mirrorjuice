@@ -8,7 +8,6 @@ from bot import app
 async def gsearch(client, message):
     query = message.text.split(None, 1)[1]
     process = await message.repy_text(f"**Googling** for `{query}` ...")
-    flags = message.flags
     if message.reply_to_message:
         query = message.reply_to_message
     if not query:
